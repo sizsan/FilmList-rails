@@ -4,13 +4,19 @@ class FilmsController < ApplicationController
   end
 
   def new
-      @film = Film.new
-      @film.title = params[:film][:title]
-      @film.year = params[:film][:year]
-    
-     if @film.save
-        redirect_to films_index_path
-     end
+    @film = Film.new
+  end
+
+  def create
+    film = Film.new
+    film.title = params[:film][:title]
+    film.year = params[:film][:year]
+
+    if film.save
+      redirect_to films_path
+    else
+      redirect_to films_path
+    end
   end
 end
 
